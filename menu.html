@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakpak | Full Menu</title>
+    <style>
+        /* CSS STYLES (Reused from index.html for consistency) */
+        :root {
+            --primary-color: #d62828; 
+            --secondary-color: #f77f00; 
+            --dark-color: #1a1a1a;
+            --light-color: #fcfcfc;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: padding 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        /* Menu Header */
+        .menu-header {
+            padding: 10rem 5% 4rem;
+            text-align: center;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+        }
+
+        .menu-header h1 {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .menu-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Menu Grid */
+        .menu-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-category {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Coming Soon Image Placeholder */
+        .coming-soon-img {
+            width: 100%;
+            height: 220px;
+            background: repeating-linear-gradient(
+                45deg,
+                #e0e0e0,
+                #e0e0e0 10px,
+                #f4f4f4 10px,
+                #f4f4f4 20px
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        .coming-soon-text {
+            background-color: var(--dark-color);
+            color: var(--secondary-color);
+            padding: 0.5rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            transform: rotate(-5deg);
+            box-shadow: 2px 2px 0px var(--primary-color);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            font-size: 1.4rem;
+        }
+
+        .product-info p {
+            font-size: 1rem;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer & Work in Progress Note */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        .wip-note {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .menu-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">PAKPAK.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">Our Story</a></li>
+            <li><a href="index.html#why-us">Why Us</a></li>
+            <li><a href="menu.html" class="active">Full Menu</a></li>
+        </ul>
+    </nav>
+
+    <!-- Menu Header -->
+    <header class="menu-header">
+        <h1>The Lineup</h1>
+        <p>Prepare to get your hands messy. From our signature 24-hour marinated wings to our heavily caramelized smash burgers, here is everything we bring to the table.</p>
+    </header>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+        
+        <!-- Category: Burgers -->
+        <h2 class="menu-category">Smashed Burgers</h2>
+        <div class="menu-grid">
+            
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>The Original Smash</h3>
+                    <p>Two hand-smashed beef patties, melted American cheese, and our secret house sauce. A timeless, savory classic that melts in your mouth.</p>
+                    <span class="price">$8.99</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Double Trouble</h3>
+                    <p>Four smashed patties stacked dangerously high with crispy bacon and caramelized onions. Not for the faint of heart, but entirely worth the risk.</p>
+                    <span class="price">$12.99</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>The Spicy Cluck</h3>
+                    <p>Crispy fried chicken breast dipped in our signature chili oil, topped with cool, crunchy slaw. A perfect, devastating balance of heat and crunch.</p>
+                    <span class="price">$9.99</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Shroom & Swiss</h3>
+                    <p>Savory smashed beef smothered in roasted mushrooms and gooey, melted Swiss cheese. Earthy, rich, and deeply satisfying with every bite.</p>
+                    <span class="price">$10.49</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category: Wings -->
+        <h2 class="menu-category">Legendary Wings</h2>
+        <div class="menu-grid">
+            
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Inferno Hot</h3>
+                    <p>Crispy wings tossed in our fiery habanero glaze that fiercely bites back. Guaranteed to make you sweat and beg for more.</p>
+                    <span class="price">$11.99 (8pcs)</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Garlic Parmesan</h3>
+                    <p>Golden wings drenched in roasted garlic butter and dusted with aged Parmesan. A savory, salty masterpiece that requires zero dipping sauce.</p>
+                    <span class="price">$11.99 (8pcs)</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Honey Sriracha</h3>
+                    <p>The ultimate sweet and spicy combination. Sticky, finger-licking goodness that hits all the right taste buds simultaneously.</p>
+                    <span class="price">$11.99 (8pcs)</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Classic Buffalo</h3>
+                    <p>Tangy, buttery, and exactly how traditional wings should be. Served alongside a generous cup of our house-made blue cheese dip.</p>
+                    <span class="price">$10.99 (8pcs)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category: Sides -->
+        <h2 class="menu-category">Sides & Shakes</h2>
+        <div class="menu-grid">
+            
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Loaded Pakpak Fries</h3>
+                    <p>Thick-cut, seasoned fries buried under a mountain of melted cheddar, crispy bacon bits, and fresh jalapeños. The ultimate shareable sidekick.</p>
+                    <span class="price">$6.99</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="coming-soon-img">
+                    <span class="coming-soon-text">Coming Soon</span>
+                </div>
+                <div class="product-info">
+                    <h3>Classic Vanilla Shake</h3>
+                    <p>Thick, velvety, and hand-spun with real vanilla bean ice cream. The perfect, cooling antidote after a round of our Inferno Hot wings.</p>
+                    <span class="price">$4.99</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pakpak Burgers & Wings. Designed for cravings.</p>
+        
+        <!-- WORK IN PROGRESS NOTE -->
+        <div class="wip-note">
+            Note: This menu is not yet finished. Prices, images, and items are subject to change!
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Shrink navbar on scroll
+        window.onscroll = function() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                document.getElementById("navbar").style.padding = "0.8rem 5%";
+            } else {
+                document.getElementById("navbar").style.padding = "1.5rem 5%";
+            }
+        };
+    </script>
+</body>
+</html>
